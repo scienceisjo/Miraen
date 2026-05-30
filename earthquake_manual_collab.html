@@ -92,6 +92,41 @@
   header .hlogo{margin:0 auto 4px;display:block;height:36px;}
   .h2logo{height:20px;vertical-align:middle;margin-left:8px;background:#fff;border:1px solid var(--line);border-radius:3px;padding:2px 5px;}
   .mv-cover .clogo{height:30px;background:#fff;border-radius:5px;padding:4px 10px;margin-bottom:10px;display:inline-block;}
+
+  /* intro */
+  .intro h2{font-size:1.45rem;margin:0 0 6px;} .intro .big{font-size:.97rem;}
+  .kw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0 8px;}
+  .kw{border:2px solid var(--line);border-radius:6px;padding:14px 12px;background:var(--paper);text-align:center;box-shadow:3px 3px 0 var(--ink);}
+  .kw .ic{font-size:1.9rem;line-height:1;} .kw b{display:block;font-family:'Black Han Sans';font-size:1.15rem;margin:6px 0 3px;}
+  .kw.k1 b{color:var(--safe-deep);} .kw.k2 b{color:var(--hazard-deep);} .kw.k3 b{color:var(--sci);}
+  .kw span{font-size:.8rem;color:var(--ink-soft);}
+  .intro .punch{margin-top:14px;background:var(--ink);color:var(--paper);padding:12px 16px;border-radius:4px;font-weight:600;text-align:center;}
+  .intro .punch b{color:var(--hazard);}
+
+  /* disaster bag */
+  .palette{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;}
+  .custom-add{display:flex;gap:8px;align-items:center;margin:8px 0;flex-wrap:wrap;} .custom-add input{width:auto;flex:0 1 220px;}
+  .bag-wrap{position:relative;max-width:540px;margin:16px auto 0;min-height:300px;border:3px solid var(--line);
+    border-radius:16px 16px 22px 22px;background:linear-gradient(180deg,#cda86e 0%,#bb9356 60%,#a9824a 100%);
+    box-shadow:var(--shadow);background-size:cover;background-position:center;overflow:hidden;}
+  .bag-wrap::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:58%;height:36px;
+    background:#9c7c46;border:3px solid var(--line);border-top:none;border-radius:0 0 16px 16px;}
+  .bag-wrap.has-img{background-color:transparent;} .bag-wrap.has-img::before{display:none;}
+  .bag-title{position:relative;text-align:center;font-family:'Black Han Sans';color:#3a2e18;padding:48px 0 6px;font-size:1.15rem;}
+  .bag-inside{position:relative;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:6px 18px 24px;}
+  .bag-empty{position:relative;text-align:center;color:#5a4a2a;font-size:.85rem;padding-bottom:22px;}
+  .bag-item{background:rgba(255,255,255,.94);border:2px solid var(--line);border-radius:11px;padding:9px 8px;min-width:80px;text-align:center;cursor:pointer;position:relative;box-shadow:2px 2px 0 rgba(33,28,20,.6);}
+  .bag-item .emo{font-size:1.8rem;display:block;line-height:1.25;} .bag-item .nm{font-size:.74rem;font-weight:600;}
+  .bag-item .rm{position:absolute;top:-9px;right:-9px;background:var(--alert);color:#fff;border-radius:50%;width:19px;height:19px;font-size:.72rem;line-height:19px;display:none;text-align:center;}
+  .bag-item:hover .rm{display:block;}
+
+  @media print{
+    header{display:none !important;}
+    #previewWrap{border:none;box-shadow:none;padding:0;}
+    body.bagprint #previewWrap{display:none !important;}
+    body.bagprint #bagSection{display:block !important;border:none;box-shadow:none;}
+    body.bagprint .bag-wrap{box-shadow:none;} .bag-item{box-shadow:none;}
+  }
 </style>
 </head>
 <body>
@@ -133,6 +168,20 @@ alter publication supabase_realtime add table eq_quake_data;</pre></details>
   </div>
 
   <!-- LOBBY -->
+  <!-- INTRO -->
+  <div class="panel intro no-print hidden" id="intro">
+    <h2>우리 반이 <span style="color:var(--hazard-deep)">함께</span> 만드는 지진 대응 매뉴얼</h2>
+    <p class="big">이 매뉴얼은 선생님이 주는 게 아니라, <b>우리가 함께</b> 만듭니다. 한 사람이 전부 할 수는 없어요.
+      누구는 정해진 기간의 지진·화산 데이터를 조사해 지도에 올리고, 어떤 모둠은 '집에서', 어떤 모둠은 '학교에서', 또 어떤 모둠은 '새벽에' 같은 상황을 하나씩 맡습니다.
+      이 조각들이 <b>모두 모여야</b> 비로소 우리 반의 매뉴얼 한 권이 완성돼요.</p>
+    <div class="kw-grid">
+      <div class="kw k1"><div class="ic">🤝</div><b>의존</b><span>내 조각이 빠지면 전체 지도와 매뉴얼에 구멍이 생겨요. 친구의 조각도, 내 조각도 서로에게 필요해요.</span></div>
+      <div class="kw k2"><div class="ic">✅</div><b>책임</b><span>내가 맡은 기간·상황은 내가 끝까지 책임지고 채워요. 내 역할을 잘 해내야 우리 반 매뉴얼이 가능해집니다.</span></div>
+      <div class="kw k3"><div class="ic">🙋</div><b>참여</b><span>한 명도 빠짐없이 한 조각씩. 모두의 손이 닿아야 진짜 '우리 반'의 매뉴얼이에요.</span></div>
+    </div>
+    <div class="punch">함께 배우고, 함께 문제를 해결하고, 함께 성장해요. <b>네 역할이 곧 우리 반의 안전이야!</b></div>
+  </div>
+
   <div class="panel no-print hidden" id="lobby">
     <h2>입장하기</h2>
     <label class="lab">반 / 수업 코드 <span class="tip">(같은 코드끼리 한 매뉴얼을 만들어요)</span></label>
@@ -172,13 +221,33 @@ alter publication supabase_realtime add table eq_quake_data;</pre></details>
     </div>
 
     <!-- PREVIEW -->
-    <div class="panel no-print" id="previewWrap">
-      <h2>📖 우리 반 종합 매뉴얼</h2>
-      <p class="tip">조사한 지도와 모둠별 시나리오가 모여 하나의 매뉴얼이 됩니다.</p>
+    <div class="panel" id="previewWrap">
+      <h2 class="no-print">📖 우리 반 종합 매뉴얼</h2>
+      <p class="tip no-print">조사한 지도와 모둠별 시나리오가 모여 하나의 매뉴얼이 됩니다.</p>
       <div id="preview" style="margin-top:12px;"><div class="mv-sec mv-empty">내용이 올라오면 여기에 모입니다.</div></div>
       <div class="btn-row no-print" style="margin-top:14px;justify-content:center;">
         <button class="btn primary" id="printBtn">🖨️ 인쇄 / PDF</button>
         <button class="btn safe" id="dlBtn">💾 매뉴얼 내려받기 (.html)</button></div>
+    </div>
+
+    <!-- SECTION 3 : 나의 재난가방 -->
+    <div class="panel no-print" id="bagSection">
+      <h2><span class="tagn">3</span>나의 재난가방 만들기 🎒</h2>
+      <p class="tip no-print">지진·재난에 대비해 가방에 꼭 넣을 물품을 골라 담아요. 아래 물품을 누르면 담기고, 가방 속 물품을 누르면 빠져요. (보통 3일치 생필품을 챙겨요!)</p>
+      <div class="palette no-print" id="bagPalette"></div>
+      <div class="custom-add no-print">
+        <input id="bagEmoji" maxlength="2" placeholder="🧸" style="width:60px;text-align:center;">
+        <input id="bagLabel" placeholder="직접 추가할 물품 이름">
+        <button class="btn sm" id="bagAdd">＋ 담기</button>
+      </div>
+      <div class="bag-wrap" id="bagWrap">
+        <div class="bag-title" id="bagTitle">나의 재난가방</div>
+        <div class="bag-inside" id="bagInside"></div>
+        <div class="bag-empty" id="bagEmpty">위에서 물품을 골라 담아보세요</div>
+      </div>
+      <div class="btn-row no-print" style="margin-top:12px;justify-content:center;">
+        <button class="btn primary" id="bagPrintBtn">🖨️ 내 재난가방 저장 / 인쇄</button>
+      </div>
     </div>
   </div>
 </div>
@@ -211,6 +280,16 @@ const SKEYS=Object.keys(SIT);
 const STYLES=["플랫 벡터 픽토그램, 또렷한 윤곽선, 밝고 단순한 색","친근한 안전 안내 웹툰풍, 부드러운 색감","공공 안내표지 아이콘 스타일, 미니멀"];
 const COMPOSE="인물은 화면 아래쪽에 배치하고 위쪽 1/3은 단색 배경으로 비워 둘 것(제목 글자 자리)";
 
+/* ====== 재난가방 (가방 이미지를 받으면 BAG_IMG에 data URI를 넣으세요) ====== */
+let BAG_IMG = "";
+const KIT_ITEMS=[
+ ["💧","생수"],["🍫","비상식량"],["🔦","손전등"],["🔋","보조배터리"],["🩹","구급상자"],
+ ["💊","상비약"],["📻","휴대용 라디오"],["😷","마스크"],["🧤","목장갑"],["🧻","휴지·물티슈"],
+ ["📣","호루라기"],["🧴","손소독제"],["🧥","보온 담요"],["🪪","신분증·비상연락처"],
+ ["💵","비상금"],["🔌","충전 케이블"],["🧦","여벌 양말"],["🗺️","우리 동네 지도"]
+];
+let bagItems=[];
+
 let sb=null, room="", nick="", myNum=0, cardStore=new Map(), dataStore=new Map(), editingId=null, pendingRender=false;
 const $=id=>document.getElementById(id);
 function lsGet(k){try{return localStorage.getItem(k);}catch(e){return null;}}
@@ -229,7 +308,7 @@ function initConfig(){
   if(SUPABASE_URL && SUPABASE_ANON_KEY) connect();
 }
 function connect(){ try{ sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
-  $('setup').classList.add('hidden'); $('lobby').classList.remove('hidden');
+  $('setup').classList.add('hidden'); $('intro').classList.remove('hidden'); $('lobby').classList.remove('hidden');
   if(lsGet('room'))$('room').value=lsGet('room'); if(lsGet('nick'))$('nick').value=lsGet('nick'); if(lsGet('num'))$('num').value=lsGet('num');
 }catch(e){ $('cfgMsg').textContent="연결 실패: "+e.message; } }
 $('cfgSave').onclick=()=>{ SUPABASE_URL=$('cfgUrl').value.trim(); SUPABASE_ANON_KEY=$('cfgKey').value.trim();
@@ -246,7 +325,8 @@ $('joinBtn').onclick=async()=>{
   let tbl='<table class="pt"><tr><th>번호</th><th>담당 기간</th></tr>';
   for(let i=1;i<=TABLE_NUMS;i++) tbl+=`<tr${i===myNum?' style="background:#fff4e0;font-weight:700;"':''}><td>${i}번</td><td>${periodStr(i)}</td></tr>`;
   tbl+='</table>'; $('periodTable').innerHTML=tbl;
-  $('lobby').classList.add('hidden'); $('board').classList.remove('hidden');
+  $('intro').classList.add('hidden'); $('lobby').classList.add('hidden'); $('board').classList.remove('hidden');
+  $('bagTitle').textContent=(nick||'나')+'의 재난가방'; renderPalette(); applyBagImg(); loadBag(); renderBag();
   await loadAll(); subscribe(); buildManual();
 };
 async function loadAll(){
@@ -381,6 +461,23 @@ $('printBtn').onclick=()=>{buildManual();setTimeout(()=>window.print(),200);};
 $('dlBtn').onclick=()=>{buildManual(); const css=document.querySelector('style').outerHTML;
   const html=`<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet">${css}</head><body><div class="wrap"><div id="preview">${$('preview').innerHTML}</div></div></body></html>`;
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([html],{type:'text/html'}));a.download=`우리학교_지진대응매뉴얼_${room}.html`;a.click();};
+
+/* ---- 재난가방 ---- */
+function bagKey(){return 'mybag_'+room+'_'+nick;}
+function loadBag(){ try{const r=localStorage.getItem(bagKey()); bagItems=r?JSON.parse(r):[];}catch(e){bagItems=[];} }
+function saveBag(){ try{localStorage.setItem(bagKey(),JSON.stringify(bagItems));}catch(e){} }
+function applyBagImg(){ if(BAG_IMG){ const w=$('bagWrap'); w.style.backgroundImage='url('+BAG_IMG+')'; w.classList.add('has-img'); } }
+function renderPalette(){ const p=$('bagPalette'); p.innerHTML=KIT_ITEMS.map((it,i)=>`<button class="btn sm" data-i="${i}">${it[0]} ${it[1]}</button>`).join('');
+  p.querySelectorAll('button').forEach(b=>b.onclick=()=>{const it=KIT_ITEMS[+b.dataset.i]; addBagItem(it[0],it[1]);}); }
+function addBagItem(emo,nm){ if(!nm)return; if(bagItems.some(x=>x.nm===nm))return; bagItems.push({emo,nm}); saveBag(); renderBag(); }
+function rmBagItem(i){ bagItems.splice(i,1); saveBag(); renderBag(); }
+function renderBag(){ const inside=$('bagInside');
+  inside.innerHTML=bagItems.map((x,i)=>`<div class="bag-item" data-i="${i}"><span class="rm">×</span><span class="emo">${x.emo}</span><span class="nm">${esc(x.nm)}</span></div>`).join('');
+  inside.querySelectorAll('.bag-item').forEach(el=>el.onclick=()=>rmBagItem(+el.dataset.i));
+  $('bagEmpty').style.display=bagItems.length?'none':'block'; }
+$('bagAdd').onclick=()=>{ const e=$('bagEmoji').value.trim()||"📦"; const n=$('bagLabel').value.trim(); if(!n)return; addBagItem(e,n); $('bagEmoji').value="";$('bagLabel').value=""; };
+$('bagPrintBtn').onclick=()=>{ document.body.classList.add('bagprint'); window.print(); };
+window.addEventListener('afterprint',()=>document.body.classList.remove('bagprint'));
 
 initConfig();
 </script>
