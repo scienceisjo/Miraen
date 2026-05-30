@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>지진 매뉴얼 협동 보드</title>
+<title>우리학교 지진 대응 매뉴얼 · 미래엔 엠티처 활용</title>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{--paper:#f3ecdd;--paper2:#ece2cd;--ink:#211c14;--ink-soft:#5a5040;--hazard:#e0a100;--hazard-deep:#b07c00;
@@ -16,305 +16,357 @@
   .wrap{max-width:1080px;margin:0 auto;padding:0 18px;}
   h1,h2,h3{font-family:'Black Han Sans';font-weight:400;letter-spacing:-.5px;line-height:1.15;}
   .mono{font-family:'IBM Plex Mono';}
-  header{padding:30px 0 14px;text-align:center;}
+  header{padding:28px 0 12px;text-align:center;}
   .stamp{display:inline-block;border:3px solid var(--ink);padding:4px 14px;transform:rotate(-2deg);font-family:'Black Han Sans';
-    color:var(--alert);letter-spacing:2px;font-size:.82rem;background:var(--card);box-shadow:3px 3px 0 var(--ink);margin-bottom:10px;}
-  header h1{font-size:clamp(1.7rem,4.5vw,2.7rem);margin:6px 0 2px;}
+    color:var(--alert);letter-spacing:2px;font-size:.8rem;background:var(--card);box-shadow:3px 3px 0 var(--ink);margin-bottom:10px;}
+  header h1{font-size:clamp(1.55rem,4vw,2.5rem);margin:6px 0 2px;}
   header h1 .accent{color:var(--hazard-deep);}
-  header p.sub{margin:2px 0 0;color:var(--ink-soft);font-weight:500;font-size:.95rem;}
+  header p.sub{margin:2px 0 0;color:var(--ink-soft);font-weight:600;font-size:.92rem;}
 
   .btn{font-family:'IBM Plex Sans KR';font-weight:700;cursor:pointer;border:2px solid var(--line);padding:9px 15px;
     font-size:.9rem;background:var(--card);color:var(--ink);border-radius:3px;box-shadow:3px 3px 0 var(--ink);transition:transform .08s,box-shadow .08s;}
   .btn:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--ink);} .btn:active{transform:translate(3px,3px);box-shadow:none;}
   .btn.primary{background:var(--hazard);} .btn.safe{background:var(--safe);color:#fff;} .btn.sci{background:var(--sci);color:#fff;}
   .btn.sm{font-size:.8rem;padding:6px 11px;box-shadow:2px 2px 0 var(--ink);} .btn.ghost{background:transparent;box-shadow:none;border-style:dashed;}
+  .btn.chip{font-size:.76rem;padding:4px 9px;box-shadow:2px 2px 0 var(--ink);}
   .btn-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
   input,textarea,select{font-family:'IBM Plex Sans KR';border:2px solid var(--line);background:var(--paper);padding:9px 11px;font-size:.94rem;border-radius:3px;width:100%;resize:vertical;}
 
-  .panel{background:var(--card);border:3px solid var(--line);box-shadow:var(--shadow);padding:22px;margin:20px 0;}
-  .panel h2{font-size:1.3rem;margin:0 0 12px;}
+  .panel{background:var(--card);border:3px solid var(--line);box-shadow:var(--shadow);padding:20px;margin:20px 0;}
+  .panel h2{font-size:1.25rem;margin:0 0 6px;} .panel h2 .tagn{font-family:'Black Han Sans';background:var(--ink);color:var(--hazard);padding:2px 10px;border-radius:3px;font-size:.95rem;margin-right:8px;}
   .lab{font-weight:600;font-size:.88rem;display:block;margin:12px 0 4px;}
   .tip{font-size:.78rem;color:var(--ink-soft);}
-  pre.sql{background:#222018;color:#f3ecdd;padding:12px;border-radius:3px;font-family:'IBM Plex Mono';font-size:.76rem;overflow:auto;border:2px solid var(--line);}
+  pre.sql{background:#222018;color:#f3ecdd;padding:12px;border-radius:3px;font-family:'IBM Plex Mono';font-size:.74rem;overflow:auto;border:2px solid var(--line);}
+  .steps{font-size:.85rem;background:#fff4e0;border-left:5px solid var(--hazard);padding:8px 12px;border-radius:2px;margin:10px 0;}
+  .steps b{color:var(--hazard-deep);}
 
-  /* status bar */
-  .bar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:var(--ink);color:var(--paper);
-    padding:10px 16px;border-radius:4px;margin:8px 0 20px;font-size:.86rem;}
-  .bar b{color:var(--hazard);} .dot{width:10px;height:10px;border-radius:50%;background:#888;display:inline-block;}
-  .dot.on{background:#46d27e;box-shadow:0 0 8px #46d27e;}
-  .bar .right{margin-left:auto;display:flex;gap:8px;}
+  .bar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:4px;margin:8px 0 18px;font-size:.86rem;}
+  .bar b{color:var(--hazard);} .dot{width:10px;height:10px;border-radius:50%;background:#888;display:inline-block;} .dot.on{background:#46d27e;box-shadow:0 0 8px #46d27e;}
+  .bar .right{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;}
 
-  /* situation cards */
+  .period-box{background:#eaf1f8;border:2px solid var(--sci);border-radius:3px;padding:10px 14px;font-size:.95rem;margin:6px 0 12px;}
+  .period-box b{color:var(--sci);}
+  table.pt{border-collapse:collapse;font-size:.82rem;margin-top:8px;} table.pt td,table.pt th{border:1px solid var(--line);padding:4px 10px;}
+  table.pt th{background:var(--paper2);}
+
+  .data-form{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:end;}
+  .data-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-top:14px;}
+  .dcell{border:2px solid var(--line);border-radius:3px;background:var(--paper);overflow:hidden;}
+  .dcell img{width:100%;height:130px;object-fit:cover;display:block;border-bottom:2px solid var(--line);background:#fff;}
+  .dcell .meta{padding:6px 8px;font-size:.76rem;} .dcell .meta b{font-family:'Black Han Sans';}
+  .dcell .kind{display:inline-block;font-size:.7rem;padding:1px 6px;border-radius:8px;color:#fff;}
+  .k-eq{background:var(--alert);} .k-vol{background:var(--hazard-deep);} .k-both{background:var(--sci);}
+  .dcell .del{font-size:.7rem;color:var(--alert);cursor:pointer;float:right;}
+
   #cards{display:grid;gap:18px;}
   .scard{border:3px solid var(--line);border-radius:4px;background:var(--paper);overflow:hidden;}
   .scard-top{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--paper2);border-bottom:2px solid var(--line);flex-wrap:wrap;}
   .scard-top .badge{font-family:'Black Han Sans';background:var(--alert);color:#fff;padding:2px 10px;border-radius:3px;font-size:.85rem;}
   .scard-top .author{font-size:.8rem;color:var(--ink-soft);} .scard-top select{flex:1;min-width:120px;width:auto;}
   .scard-body{padding:14px;}
-  .official{background:#fff4e0;border-left:5px solid var(--hazard);padding:8px 12px;font-size:.84rem;border-radius:2px;margin-bottom:12px;}
-  .official b{color:var(--hazard-deep);}
-  .field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;} .field label{font-weight:600;font-size:.88rem;}
-  .field label .q{color:var(--hazard-deep);}
-  .prompt-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:6px 0 10px;}
+  .official{background:#fff4e0;border-left:5px solid var(--hazard);padding:8px 12px;font-size:.84rem;border-radius:2px;margin-bottom:12px;} .official b{color:var(--hazard-deep);}
+  .field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;} .field label{font-weight:600;font-size:.88rem;} .field label .q{color:var(--hazard-deep);}
+  .prompt-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:6px 0 8px;}
+  .prompt-grid .full{grid-column:1/3;}
   .prompt-out{font-family:'IBM Plex Mono';font-size:.83rem;background:#222018;color:#f3ecdd;padding:12px;border-radius:3px;white-space:pre-wrap;min-height:58px;border:2px solid var(--line);}
+  .style-chips{display:flex;gap:6px;flex-wrap:wrap;margin:2px 0 8px;}
   .img-drop{border:2px dashed var(--line);border-radius:3px;padding:12px;text-align:center;background:var(--card);cursor:pointer;font-size:.84rem;}
   .img-prev{max-width:100%;max-height:240px;display:block;margin:10px auto 0;border:2px solid var(--line);}
   .sci-reason{background:#eaf1f8;border-left:5px solid var(--sci);padding:4px 0;}
   .saved{font-size:.76rem;color:var(--safe-deep);font-family:'IBM Plex Mono';}
 
-  /* preview */
   #preview{background:#fff;border:3px solid var(--line);box-shadow:var(--shadow);}
   .mv-cover{background:var(--ink);color:var(--paper);padding:24px;text-align:center;}
-  .mv-cover h2{font-size:1.9rem;color:var(--hazard);margin:0;} .mv-cover .meta{font-size:.85rem;opacity:.85;margin-top:8px;}
-  .mv-sec{padding:16px 20px;border-bottom:2px dashed #ccc;}
-  .mv-sec h3{font-size:1.1rem;margin:0 0 8px;border-left:6px solid var(--hazard);padding-left:10px;}
+  .mv-cover h2{font-size:1.7rem;color:var(--hazard);margin:0;} .mv-cover .sub2{font-size:.85rem;opacity:.8;margin-top:4px;} .mv-cover .meta{font-size:.82rem;opacity:.85;margin-top:8px;}
+  .mv-sec{padding:16px 20px;border-bottom:2px dashed #ccc;} .mv-sec h3{font-size:1.1rem;margin:0 0 10px;border-left:6px solid var(--hazard);padding-left:10px;} .mv-sec h3.s{border-color:var(--sci);}
+  .mv-maps{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+  .mv-maps .m img{width:100%;height:110px;object-fit:cover;border:1px solid #ccc;} .mv-maps .m div{font-size:.72rem;color:#555;}
   .mv-sit{display:flex;gap:14px;padding:12px 0;border-bottom:1px dotted #ddd;flex-wrap:wrap;}
   .mv-sit img{width:150px;height:auto;border:1px solid #ccc;flex:0 0 auto;}
   .mv-sit .t{flex:1 1 240px;} .mv-sit .t b{display:block;font-family:'Black Han Sans';color:var(--alert);font-size:1.05rem;}
   .mv-sit .who{font-size:.74rem;color:#888;} .mv-sit .sci-tag{display:inline-block;background:#eaf1f8;color:var(--sci);font-size:.78rem;padding:1px 7px;border-radius:8px;margin-top:4px;}
-  .mv-empty{color:#999;font-style:italic;} .pre{white-space:pre-wrap;}
-  .hidden{display:none;}
-  @media (max-width:680px){.prompt-grid{grid-template-columns:1fr;} .mv-sit img{width:110px;}}
-  @media print{body{background:#fff;padding:0;} .no-print{display:none !important;} #preview{box-shadow:none;border:none;}
-    .mv-cover{print-color-adjust:exact;-webkit-print-color-adjust:exact;} .mv-sec{break-inside:avoid;}}
+  .mv-empty{color:#999;font-style:italic;} .pre{white-space:pre-wrap;} .hidden{display:none;}
+  @media (max-width:680px){.prompt-grid,.data-form{grid-template-columns:1fr;} .mv-sit img{width:110px;}}
+  @media print{body{background:#fff;padding:0;} .no-print{display:none !important;} #preview{box-shadow:none;border:none;} .mv-cover{print-color-adjust:exact;-webkit-print-color-adjust:exact;} .mv-sec{break-inside:avoid;}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <div class="stamp">COLLABORATIVE · LIVE</div>
-    <h1>지진 매뉴얼 <span class="accent">협동 보드</span></h1>
-    <p class="sub">각자 기기에서 한 조각씩 올리면, 우리 반 매뉴얼이 실시간으로 완성돼요</p>
+    <div class="stamp">우리학교 지진 대응 매뉴얼</div>
+    <h1>우리학교 <span class="accent">지진 대응</span> 매뉴얼</h1>
+    <p class="sub">미래엔 엠티처 활용 · 우리 반이 함께 만드는 실시간 매뉴얼</p>
   </header>
 
   <!-- SETUP -->
   <div class="panel no-print" id="setup">
-    <h2>① 연결 설정</h2>
-    <p class="tip">Supabase의 Project URL과 anon public 키를 넣으세요. 한 번 넣으면 이 기기에 저장됩니다. (선생님이 파일 상단 CONFIG에 미리 넣어 배포하면 학생은 이 단계를 건너뜁니다.)</p>
+    <h2>연결 설정</h2>
+    <p class="tip">Supabase URL과 anon 키를 넣으세요. (선생님이 파일 상단 CONFIG에 미리 넣어두면 학생은 이 화면을 건너뜁니다.)</p>
     <label class="lab">Project URL</label><input id="cfgUrl" placeholder="https://xxxx.supabase.co">
     <label class="lab">anon public key</label><input id="cfgKey" placeholder="eyJ...">
-    <div class="btn-row" style="margin-top:14px;"><button class="btn primary" id="cfgSave">연결하기</button>
-      <span class="tip" id="cfgMsg"></span></div>
-    <details style="margin-top:16px;"><summary class="tip" style="cursor:pointer;">처음이라면 — Supabase 테이블 만들기 SQL 보기</summary>
-      <pre class="sql">create table if not exists eq_manual_cards (
+    <div class="btn-row" style="margin-top:14px;"><button class="btn primary" id="cfgSave">연결하기</button><span class="tip" id="cfgMsg"></span></div>
+    <details style="margin-top:16px;"><summary class="tip" style="cursor:pointer;">처음이라면 — Supabase 테이블 2개 만들기 SQL 보기</summary>
+      <pre class="sql">-- 1) 상황별 대피 시나리오 카드
+create table if not exists eq_manual_cards (
   id uuid primary key default gen_random_uuid(),
   room text not null, author text,
   type text, evac text, prompt text, revise text, reason text, img text,
   updated_at timestamptz default now());
 alter table eq_manual_cards enable row level security;
 create policy "classroom_open" on eq_manual_cards for all using (true) with check (true);
-alter publication supabase_realtime add table eq_manual_cards;</pre></details>
+alter publication supabase_realtime add table eq_manual_cards;
+
+-- 2) 미래엔 디지털 지도(지진·화산 데이터) 업로드
+create table if not exists eq_quake_data (
+  id uuid primary key default gen_random_uuid(),
+  room text not null, author text, num int,
+  period text, kind text, note text, img text,
+  updated_at timestamptz default now());
+alter table eq_quake_data enable row level security;
+create policy "classroom_open_data" on eq_quake_data for all using (true) with check (true);
+alter publication supabase_realtime add table eq_quake_data;</pre></details>
   </div>
 
   <!-- LOBBY -->
   <div class="panel no-print hidden" id="lobby">
-    <h2>② 입장하기</h2>
-    <label class="lab">반 / 수업 코드 <span class="tip">(같은 코드를 쓰는 사람끼리 한 매뉴얼을 만들어요. 추측하기 어려운 코드 권장)</span></label>
+    <h2>입장하기</h2>
+    <label class="lab">반 / 수업 코드 <span class="tip">(같은 코드끼리 한 매뉴얼을 만들어요)</span></label>
     <input id="room" placeholder="예: 2학년3반-0530">
-    <label class="lab">내 별명 / 번호 <span class="tip">(누가 어떤 조각을 맡았는지 표시돼요)</span></label>
-    <input id="nick" placeholder="예: 7번 김OO 또는 3모둠">
+    <label class="lab">내 별명 / 이름</label><input id="nick" placeholder="예: 7번 김OO 또는 3모둠">
+    <label class="lab">내 번호 <span class="tip">(담당 조사 기간이 정해져요)</span></label><input id="num" type="number" min="1" placeholder="예: 7">
     <div class="btn-row" style="margin-top:14px;"><button class="btn safe" id="joinBtn">입장</button></div>
   </div>
 
   <!-- BOARD -->
   <div id="board" class="hidden">
-    <div class="bar no-print">
-      <span class="dot" id="rt"></span><span>실시간</span>
+    <div class="bar no-print"><span class="dot" id="rt"></span><span>실시간</span>
       <span>· 반 <b id="roomLbl"></b></span><span>· 나 <b id="nickLbl"></b></span>
-      <span class="right"><button class="btn sm" id="addCard">＋ 내 카드 추가</button>
-        <button class="btn sm sci" id="buildBtn">🧩 매뉴얼 보기</button></span>
-    </div>
-    <p class="tip no-print" id="emptyMsg">아직 카드가 없어요. <b>[＋ 내 카드 추가]</b>로 우리 모둠이 맡은 상황을 올려보세요.</p>
-    <div id="cards"></div>
+      <span class="right"><button class="btn sm" id="addCard">＋ 상황 카드</button><button class="btn sm sci" id="buildBtn">🧩 매뉴얼 보기</button></span></div>
 
-    <div class="panel no-print" style="margin-top:24px;" id="previewWrap">
-      <h2>📖 우리 반 종합 매뉴얼</h2>
-      <p class="tip">모두가 올린 조각이 모여 하나의 매뉴얼이 됩니다. 새 카드가 올라오면 자동 갱신돼요.</p>
-      <div id="preview" style="margin-top:12px;"><div class="mv-sec mv-empty">카드가 올라오면 여기에 모입니다.</div></div>
-      <div class="btn-row no-print" style="margin-top:14px;justify-content:center;">
-        <button class="btn primary" id="printBtn">🖨️ 인쇄 / PDF로 저장</button>
-        <button class="btn safe" id="dlBtn">💾 매뉴얼 내려받기 (.html)</button>
+    <!-- SECTION 1 : 데이터 조사 & 지도 업로드 -->
+    <div class="panel no-print">
+      <h2><span class="tagn">1</span>지진·화산 데이터 조사 & 미래엔 지도 업로드</h2>
+      <div class="period-box">내 번호 <b id="myNum">-</b>번 담당 기간 → <b id="myPeriod">번호를 입력해 입장하세요</b></div>
+      <details><summary class="tip" style="cursor:pointer;">전체 번호별 기간표 보기</summary><div id="periodTable"></div></details>
+      <div class="steps"><b>활동 순서</b> ① 기상청에서 내 기간의 지진·화산을 조사 → ② 미래엔 디지털 지도(<b>세계지도</b>)에서 발생 지역을 선택해 좌표 등록 → ③ 지도를 <b>다운로드</b> → ④ 아래에 업로드해 우리 반 지도로 합치기</div>
+      <div class="data-form">
+        <div><label class="lab">종류</label><select id="dKind"><option value="지진">지진</option><option value="화산">화산</option><option value="지진+화산">지진+화산</option></select></div>
+        <div><label class="lab">메모 (예: 규모·위치·건수)</label><input id="dNote" placeholder="예: 규모 4.0↑ 12건, 환태평양 집중"></div>
+        <div><button class="btn primary" id="dUpload">🗺️ 지도 업로드</button><input type="file" id="dFile" accept="image/*" class="hidden"></div>
       </div>
+      <span class="tip" id="dMsg"></span>
+      <div class="data-gallery" id="dataGallery"></div>
+    </div>
+
+    <!-- SECTION 2 : 상황별 시나리오 카드 -->
+    <div class="panel no-print">
+      <h2><span class="tagn">2</span>상황별 대피 시나리오 만들기</h2>
+      <p class="tip">우리 모둠이 맡은 상황(집·학교·학원·영화관·새벽 등)을 하나 골라 카드를 채워요. <b>[＋ 상황 카드]</b>로 추가합니다.</p>
+      <p class="tip" id="emptyMsg" style="margin-top:8px;">아직 카드가 없어요.</p>
+      <div id="cards" style="margin-top:12px;"></div>
+    </div>
+
+    <!-- PREVIEW -->
+    <div class="panel no-print" id="previewWrap">
+      <h2>📖 우리 반 종합 매뉴얼</h2>
+      <p class="tip">조사한 지도와 모둠별 시나리오가 모여 하나의 매뉴얼이 됩니다.</p>
+      <div id="preview" style="margin-top:12px;"><div class="mv-sec mv-empty">내용이 올라오면 여기에 모입니다.</div></div>
+      <div class="btn-row no-print" style="margin-top:14px;justify-content:center;">
+        <button class="btn primary" id="printBtn">🖨️ 인쇄 / PDF</button>
+        <button class="btn safe" id="dlBtn">💾 매뉴얼 내려받기 (.html)</button></div>
     </div>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-/* ====== CONFIG (선생님이 미리 넣어 배포하려면 여기에) ====== */
+/* ====== CONFIG (선생님이 미리 넣어 배포) ====== */
 let SUPABASE_URL = "https://vbvtnmnodeoocbbjauap.supabase.co";
 let SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZidnRubW5vZGVvb2NiYmphdWFwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk0OTQ0OTYsImV4cCI6MjA5NTA3MDQ5Nn0.dvuRrt3qw2Tya_QwGbcXrmGPdfDgI4xmgyH8UjU73Nc";
 
+/* ====== 번호별 담당 기간 (필요하면 여기만 수정) ====== */
+const PERIOD_START = new Date(2025,6,1);  // 2025-07-01
+const MONTHS_PER = 5;                      // 한 번호당 5개월
+const TABLE_NUMS = 12;                     // 기간표에 보여줄 번호 수
+
+/* ====== 상황 프리셋 (행정안전부 행동요령 + 그릴 장면) ====== */
 const SIT={
- "집":{official:"탁자 아래로 들어가 다리를 꼭 잡고 몸을 보호. 멈추면 전기·가스를 차단하고 문을 열어 출구를 확보한 뒤 계단으로 대피.",place:"집 거실",person:"한 사람",action:"식탁(탁자) 아래로 들어가 다리를 꼭 잡고 몸을 낮춘 자세"},
- "학교(교실)":{official:"책상 아래로 들어가 책상 다리를 꼭 잡고, 멈추면 질서를 지키며 운동장으로 대피. 창문 유리가 깨질 수 있으니 창문과 떨어져 이동.",place:"학교 교실",person:"학생",action:"책상 아래로 들어가 책상 다리를 잡고 머리를 보호하는 자세"},
- "화장실·욕실":{official:"갇히지 않도록 문을 열어두고, 거울·전구 등 유리 파손에 주의. 수건 등으로 머리를 보호하며 바로 나와 안전한 곳으로 이동.",place:"욕실",person:"한 사람",action:"문을 연 채 수건으로 머리를 감싸며 밖으로 나오는 모습"},
- "영화관(극장)":{official:"흔들림이 멈출 때까지 가방 등 소지품으로 몸을 보호하며 자리에 있다가, 안내에 따라 침착하게 대피.",place:"어두운 영화관 객석",person:"관객",action:"좌석 사이로 몸을 낮추고 가방으로 머리를 감싸 보호하는 모습"},
- "학원·고층건물":{official:"학교 요령에 준함. 고층일수록 흔들림이 크고 오래가므로 떨어지는 물건에 더 주의하고, 엘리베이터 대신 계단을 이용.",place:"고층 건물 교실",person:"학생",action:"책상 밑에서 머리를 보호한 뒤 계단으로 대피하는 모습"},
- "엘리베이터 안":{official:"모든 층의 버튼을 눌러 가장 먼저 열리는 층에서 내린 뒤 계단을 이용.",place:"엘리베이터 안",person:"한 사람",action:"엘리베이터의 모든 층 버튼을 누르는 손"},
- "마트·백화점":{official:"진열장에서 떨어지는 물건으로부터 몸을 보호하고 계단·기둥 근처로 이동. 멈추면 밖으로 대피.",place:"마트 매장",person:"손님",action:"기둥 옆에서 장바구니로 머리를 보호하는 모습"},
- "길거리(실외)":{official:"가방·손으로 머리를 보호하고 건물·담장과 거리를 두며, 운동장·공원 등 넓은 공간으로 대피.",place:"도시 거리",person:"행인",action:"가방으로 머리를 보호하며 건물에서 멀어져 넓은 곳으로 이동하는 모습"}
+ "집":{official:"탁자 아래로 들어가 다리를 꼭 잡고 몸을 보호. 멈추면 전기·가스 차단, 문을 열어 출구 확보 후 계단으로 대피.",bg:"환한 낮의 집 거실",person:"한 사람",hazard:"흔들리는 가구와 떨어지는 물건",action:"튼튼한 탁자 아래로 들어가 다리를 꼭 잡고 머리를 보호하는 자세"},
+ "학교(교실)":{official:"책상 아래로 들어가 책상 다리를 꼭 잡고, 멈추면 질서를 지키며 운동장으로 대피. 창문 유리 파손에 주의해 창문과 떨어져 이동.",bg:"낮의 학교 교실",person:"학생",hazard:"창문 유리와 떨어지는 물건",action:"책상 아래로 들어가 책상 다리를 잡고 머리를 보호하는 자세"},
+ "학원·고층건물":{official:"학교 요령에 준함. 고층일수록 흔들림이 크고 오래가므로 떨어지는 물건에 더 주의하고, 엘리베이터 대신 계단으로 대피.",bg:"고층 건물의 학원 교실",person:"학생",hazard:"흔들리는 천장 조명과 떨어지는 물건",action:"책상 밑에서 머리를 보호한 뒤 계단으로 대피하는 모습(엘리베이터 ✕)"},
+ "영화관(극장)":{official:"흔들림이 멈출 때까지 가방 등으로 몸을 보호하며 자리에 있다가, 안내에 따라 침착하게 대피.",bg:"어두운 영화관 객석",person:"관객",hazard:"흔들리는 천장과 조명",action:"좌석 사이로 몸을 낮추고 가방으로 머리를 감싸 보호하는 모습"},
+ "새벽(자는 중)":{official:"자다가 흔들림을 느끼면 베개·이불로 머리를 보호하고, 흔들림이 멈추면 깨진 유리에 주의하며 신발을 신고 안전한 곳으로 대피.",bg:"어두운 새벽 침실",person:"잠에서 깬 사람",hazard:"떨어지는 물건과 깨진 유리 조각",action:"이불과 베개로 머리를 감싸고 침대 옆에서 몸을 낮춘 자세"},
+ "화장실·욕실":{official:"갇히지 않도록 문을 열어두고, 거울·전구 등 유리 파손에 주의. 수건 등으로 머리를 보호하며 바로 나와 안전한 곳으로 이동.",bg:"욕실",person:"한 사람",hazard:"깨질 수 있는 거울과 전구",action:"문을 연 채 수건으로 머리를 감싸며 밖으로 나오는 모습"},
+ "엘리베이터 안":{official:"모든 층의 버튼을 눌러 가장 먼저 열리는 층에서 내린 뒤 계단을 이용.",bg:"엘리베이터 안",person:"한 사람",hazard:"멈출 수 있는 엘리베이터",action:"모든 층 버튼을 눌러 가장 먼저 열리는 층에서 내리는 모습"},
+ "마트·백화점":{official:"진열장 낙하물로부터 몸을 보호하고 계단·기둥 근처로 이동, 멈추면 밖으로 대피.",bg:"마트 매장",person:"손님",hazard:"진열장에서 떨어지는 물건",action:"기둥 옆에서 장바구니로 머리를 보호하는 모습"},
+ "길거리(실외)":{official:"가방·손으로 머리를 보호하고 건물·담장과 거리를 두며, 운동장·공원 등 넓은 공간으로 대피.",bg:"도시 거리",person:"행인",hazard:"건물 외벽과 간판 낙하물",action:"가방으로 머리를 보호하며 건물에서 멀어져 넓은 곳으로 이동하는 모습"}
 };
 const SKEYS=Object.keys(SIT);
-const STYLE="단순하고 깔끔한 플랫 벡터 일러스트, 안전 안내 포스터 스타일, 또렷한 윤곽선, 밝은 색";
+const STYLES=["플랫 벡터 픽토그램, 또렷한 윤곽선, 밝고 단순한 색","친근한 안전 안내 웹툰풍, 부드러운 색감","공공 안내표지 아이콘 스타일, 미니멀"];
 const COMPOSE="인물은 화면 아래쪽에 배치하고 위쪽 1/3은 단색 배경으로 비워 둘 것(제목 글자 자리)";
 
-let sb=null, room="", nick="", store=new Map(), editingId=null, pendingRender=false;
+let sb=null, room="", nick="", myNum=0, cardStore=new Map(), dataStore=new Map(), editingId=null, pendingRender=false;
 const $=id=>document.getElementById(id);
 function lsGet(k){try{return localStorage.getItem(k);}catch(e){return null;}}
 function lsSet(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+
+/* ---- periods ---- */
+function addMonths(d,m){const x=new Date(d);x.setMonth(x.getMonth()+m);return x;}
+function fmtDate(d){return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;}
+function periodFor(n){ if(!n||n<1)return null; const s=addMonths(PERIOD_START,(n-1)*MONTHS_PER); const e=addMonths(s,MONTHS_PER); e.setDate(e.getDate()-1); return {start:fmtDate(s),end:fmtDate(e)}; }
+function periodStr(n){ const p=periodFor(n); return p?`${p.start} ~ ${p.end}`:"-"; }
 
 /* ---- config ---- */
 function initConfig(){
   if(!SUPABASE_URL) SUPABASE_URL=lsGet('sb_url')||"";
   if(!SUPABASE_ANON_KEY) SUPABASE_ANON_KEY=lsGet('sb_key')||"";
-  if(SUPABASE_URL && SUPABASE_ANON_KEY){ connect(); }
+  if(SUPABASE_URL && SUPABASE_ANON_KEY) connect();
 }
-function connect(){
-  try{ sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
-    $('setup').classList.add('hidden'); $('lobby').classList.remove('hidden');
-    const savedRoom=lsGet('room'), savedNick=lsGet('nick');
-    if(savedRoom)$('room').value=savedRoom; if(savedNick)$('nick').value=savedNick;
-  }catch(e){ $('cfgMsg').textContent="연결 실패: "+e.message; }
-}
+function connect(){ try{ sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+  $('setup').classList.add('hidden'); $('lobby').classList.remove('hidden');
+  if(lsGet('room'))$('room').value=lsGet('room'); if(lsGet('nick'))$('nick').value=lsGet('nick'); if(lsGet('num'))$('num').value=lsGet('num');
+}catch(e){ $('cfgMsg').textContent="연결 실패: "+e.message; } }
 $('cfgSave').onclick=()=>{ SUPABASE_URL=$('cfgUrl').value.trim(); SUPABASE_ANON_KEY=$('cfgKey').value.trim();
   if(!SUPABASE_URL||!SUPABASE_ANON_KEY){$('cfgMsg').textContent="URL과 키를 모두 입력하세요.";return;}
   lsSet('sb_url',SUPABASE_URL); lsSet('sb_key',SUPABASE_ANON_KEY); connect(); };
 
-/* ---- join room ---- */
+/* ---- join ---- */
 $('joinBtn').onclick=async()=>{
-  room=$('room').value.trim(); nick=$('nick').value.trim()||"익명";
+  room=$('room').value.trim(); nick=$('nick').value.trim()||"익명"; myNum=parseInt($('num').value)||0;
   if(!room){alert("반/수업 코드를 입력하세요.");return;}
-  lsSet('room',room); lsSet('nick',nick);
+  lsSet('room',room); lsSet('nick',nick); lsSet('num',String(myNum));
   $('roomLbl').textContent=room; $('nickLbl').textContent=nick;
+  $('myNum').textContent=myNum||"-"; $('myPeriod').textContent= myNum?periodStr(myNum):"번호 미입력";
+  let tbl='<table class="pt"><tr><th>번호</th><th>담당 기간</th></tr>';
+  for(let i=1;i<=TABLE_NUMS;i++) tbl+=`<tr${i===myNum?' style="background:#fff4e0;font-weight:700;"':''}><td>${i}번</td><td>${periodStr(i)}</td></tr>`;
+  tbl+='</table>'; $('periodTable').innerHTML=tbl;
   $('lobby').classList.add('hidden'); $('board').classList.remove('hidden');
-  await loadCards(); subscribe(); buildManual();
+  await loadAll(); subscribe(); buildManual();
 };
-async function loadCards(){
-  const {data,error}=await sb.from('eq_manual_cards').select('*').eq('room',room).order('updated_at',{ascending:true});
-  if(error){alert("불러오기 오류: "+error.message);return;}
-  store.clear(); (data||[]).forEach(c=>store.set(c.id,c)); renderBoard();
+async function loadAll(){
+  const c=await sb.from('eq_manual_cards').select('*').eq('room',room).order('updated_at',{ascending:true});
+  if(c.error){alert("카드 불러오기 오류: "+c.error.message);} else { cardStore.clear(); (c.data||[]).forEach(r=>cardStore.set(r.id,r)); }
+  const d=await sb.from('eq_quake_data').select('*').eq('room',room).order('num',{ascending:true});
+  if(d.error){alert("지도 불러오기 오류: "+d.error.message);} else { dataStore.clear(); (d.data||[]).forEach(r=>dataStore.set(r.id,r)); }
+  renderBoard(); renderData();
 }
 function subscribe(){
-  sb.channel('cards-'+room)
-    .on('postgres_changes',{event:'*',schema:'public',table:'eq_manual_cards',filter:'room=eq.'+room},payload=>{
-      const n=payload.new, o=payload.old;
-      if(payload.eventType==='DELETE'){ store.delete(o.id); }
-      else { store.set(n.id,n); }
-      if(editingId){ pendingRender=true; } else { renderBoard(); buildManual(); }
-    })
-    .subscribe(s=>{ $('rt').classList.toggle('on', s==='SUBSCRIBED'); });
+  sb.channel('cards-'+room).on('postgres_changes',{event:'*',schema:'public',table:'eq_manual_cards',filter:'room=eq.'+room},p=>{
+    if(p.eventType==='DELETE')cardStore.delete(p.old.id); else cardStore.set(p.new.id,p.new);
+    if(editingId){pendingRender=true;} else {renderBoard();buildManual();}
+  }).subscribe(s=>$('rt').classList.toggle('on',s==='SUBSCRIBED'));
+  sb.channel('data-'+room).on('postgres_changes',{event:'*',schema:'public',table:'eq_quake_data',filter:'room=eq.'+room},p=>{
+    if(p.eventType==='DELETE')dataStore.delete(p.old.id); else dataStore.set(p.new.id,p.new);
+    renderData(); buildManual();
+  }).subscribe();
 }
-
-/* ---- add / save / delete ---- */
-async function addCard(){
-  const p=SIT[SKEYS[0]];
-  const row={room,author:nick,type:SKEYS[0],evac:"",revise:"",reason:"",img:"",
-    prompt:`${p.place}에서 ${p.person}이(가) ${p.action}을(를) 하는 모습. ${STYLE}. ${COMPOSE}. 글자·문자·숫자·로고 없이 (no text).`};
-  const {data,error}=await sb.from('eq_manual_cards').insert(row).select().single();
-  if(error){alert("추가 오류: "+error.message);return;}
-  store.set(data.id,data); renderBoard(); buildManual();
-}
-async function saveCard(id,patch){
-  patch.updated_at=new Date().toISOString();
-  const cur=store.get(id)||{}; store.set(id,{...cur,...patch});
-  const {error}=await sb.from('eq_manual_cards').update(patch).eq('id',id);
-  return !error;
-}
-async function delCard(id){ if(!confirm("이 카드를 삭제할까요?"))return;
-  await sb.from('eq_manual_cards').delete().eq('id',id); store.delete(id); renderBoard(); buildManual(); }
-$('addCard').onclick=addCard;
 
 /* ---- image resize ---- */
-function resizeImg(file,cb){ const r=new FileReader();
-  r.onload=()=>{ const img=new Image(); img.onload=()=>{ const m=800,s=Math.min(1,m/Math.max(img.width,img.height));
-    const cv=document.createElement('canvas'); cv.width=img.width*s; cv.height=img.height*s;
-    cv.getContext('2d').drawImage(img,0,0,cv.width,cv.height); cb(cv.toDataURL('image/jpeg',0.7)); };
-    img.src=r.result; }; r.readAsDataURL(file); }
+function resizeImg(file,cb){ const r=new FileReader(); r.onload=()=>{ const img=new Image(); img.onload=()=>{
+  const m=900,s=Math.min(1,m/Math.max(img.width,img.height)); const cv=document.createElement('canvas');
+  cv.width=img.width*s; cv.height=img.height*s; cv.getContext('2d').drawImage(img,0,0,cv.width,cv.height);
+  cb(cv.toDataURL('image/jpeg',0.72)); }; img.src=r.result; }; r.readAsDataURL(file); }
 
-/* ---- render board ---- */
-function buildPromptStr(p,person,action,style,compose){
-  return `${p}에서 ${person}이(가) ${action}을(를) 하는 모습. ${style}. ${compose}. 글자·문자·숫자·로고 없이 (no text, no letters).`;
+/* ---- data maps ---- */
+$('dUpload').onclick=()=>$('dFile').click();
+$('dFile').onchange=e=>{ const f=e.target.files[0]; if(!f)return; $('dMsg').textContent="이미지 처리 중…";
+  resizeImg(f,async d=>{ const row={room,author:nick,num:myNum||null,period:myNum?periodStr(myNum):"",kind:$('dKind').value,note:$('dNote').value.trim(),img:d};
+    const {data,error}=await sb.from('eq_quake_data').insert(row).select().single();
+    if(error){$('dMsg').textContent="업로드 실패: "+error.message;return;}
+    dataStore.set(data.id,data); $('dNote').value=""; $('dMsg').textContent="업로드됨 ✓ 우리 반 지도에 합쳐졌어요"; renderData(); buildManual(); }); };
+async function delData(id){ if(!confirm("이 지도를 삭제할까요?"))return; await sb.from('eq_quake_data').delete().eq('id',id); dataStore.delete(id); renderData(); buildManual(); }
+function kindClass(k){return k==='지진'?'k-eq':k==='화산'?'k-vol':'k-both';}
+function esc(t){return (t||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function renderData(){ const g=$('dataGallery'); const arr=[...dataStore.values()].sort((a,b)=>(a.num||999)-(b.num||999));
+  g.innerHTML= arr.length? arr.map(d=>`<div class="dcell"><img src="${d.img}">
+    <div class="meta"><span class="kind ${kindClass(d.kind)}">${esc(d.kind)}</span>
+      ${d.author===nick?`<span class="del" onclick="delData('${d.id}')">삭제</span>`:''}
+      <b>${d.num?d.num+'번':''}</b> ${esc(d.period||'')}<br>${esc(d.note||'')}<br><span class="tip">🙋 ${esc(d.author)}</span></div></div>`).join('')
+    : '<p class="tip">아직 올라온 지도가 없어요. 내 기간의 지도를 업로드해 보세요.</p>'; }
+
+/* ---- prompt builder ---- */
+function buildPromptStr(bg,person,hazard,action,style){
+  return `${bg}에서 ${person}이(가) ${hazard} 속에서 ${action}을(를) 하는 지진 대피 장면. ${style}. ${COMPOSE}. 안전 교육용으로 무섭거나 잔혹하지 않게. 글자·문자·숫자·로고 없이(no text, no letters, no numbers, no logo).`;
 }
-function renderBoard(){
-  const c=$('cards'); const cards=[...store.values()].sort((a,b)=>(a.updated_at||'').localeCompare(b.updated_at||''));
+
+/* ---- situation cards ---- */
+async function addCard(){ const p=SIT[SKEYS[0]];
+  const row={room,author:nick,type:SKEYS[0],evac:"",revise:"",reason:"",img:"",prompt:buildPromptStr(p.bg,p.person,p.hazard,p.action,STYLES[0])};
+  const {data,error}=await sb.from('eq_manual_cards').insert(row).select().single();
+  if(error){alert("추가 오류: "+error.message);return;}
+  cardStore.set(data.id,data); renderBoard(); buildManual(); }
+$('addCard').onclick=addCard;
+async function saveCard(id,patch){ patch.updated_at=new Date().toISOString(); const cur=cardStore.get(id)||{}; cardStore.set(id,{...cur,...patch});
+  const {error}=await sb.from('eq_manual_cards').update(patch).eq('id',id); return !error; }
+async function delCard(id){ if(!confirm("이 카드를 삭제할까요?"))return; await sb.from('eq_manual_cards').delete().eq('id',id); cardStore.delete(id); renderBoard(); buildManual(); }
+
+function renderBoard(){ const c=$('cards'); const cards=[...cardStore.values()].sort((a,b)=>(a.updated_at||'').localeCompare(b.updated_at||''));
   $('emptyMsg').style.display=cards.length?'none':'block';
-  // reconcile: keep currently-edited card node intact
-  const keep=editingId!=null? c.querySelector(`[data-id="${editingId}"]`):null;
-  c.innerHTML=""; if(keep) c.appendChild(keep);
-  cards.forEach(card=>{ if(keep && card.id===editingId)return; c.appendChild(makeCard(card)); });
-}
-function makeCard(card){
-  const mine=card.author===nick;
+  const keep=editingId!=null?c.querySelector(`[data-id="${editingId}"]`):null;
+  c.innerHTML=""; if(keep)c.appendChild(keep);
+  cards.forEach(card=>{ if(keep&&card.id===editingId)return; c.appendChild(makeCard(card)); }); }
+function makeCard(card){ const mine=card.author===nick; const pre=SIT[card.type]||{official:"",bg:"",person:"",hazard:"",action:""};
   const el=document.createElement('div'); el.className="scard"; el.dataset.id=card.id;
-  const pre=SIT[card.type]||{official:"",place:"",person:"",action:""};
   el.innerHTML=`
     <div class="scard-top"><span class="badge">상황</span>
       <select class="f-type">${SKEYS.map(k=>`<option ${k===card.type?'selected':''}>${k}</option>`).join('')}</select>
-      <span class="author">🙋 ${card.author||'익명'}${mine?' (나)':''}</span>
+      <span class="author">🙋 ${esc(card.author)}${mine?' (나)':''}</span>
       <button class="btn ghost sm f-del no-print">삭제</button></div>
     <div class="scard-body">
       <div class="official"><b>공식 행동요령:</b> <span class="f-official">${pre.official}</span></div>
-      <div class="field"><label><span class="q">①</span> 우리 상황에 맞춘 대피 요령</label>
-        <textarea class="f-evac" rows="2" placeholder="우리 교실·구조에 맞게 다시 써요">${card.evac||''}</textarea></div>
-      <label style="font-weight:600;font-size:.88rem;">② AI 이미지 프롬프트 <span class="tip">(글자 없는 그림 → 글자는 직접)</span></label>
+      <div class="field"><label><span class="q">①</span> 우리 상황에 맞춘 대피 시나리오</label>
+        <textarea class="f-evac" rows="2" placeholder="시간·장소·인물을 넣어 '이야기'처럼: 예) 새벽 2시, 자다가 흔들림을 느낀 OO은...">${esc(card.evac)}</textarea></div>
+
+      <label style="font-weight:600;font-size:.88rem;">② 대피 시나리오 이미지 프롬프트 <span class="tip">(글자 없는 그림 → 글자는 직접)</span></label>
+      <div class="style-chips no-print">${STYLES.map((s,i)=>`<button class="btn chip f-style-${i}">스타일 ${i+1}</button>`).join('')}</div>
       <div class="prompt-grid">
-        <input class="f-place" placeholder="장소" value="${pre.place}">
-        <input class="f-person" placeholder="인물" value="${pre.person}">
-        <input class="f-action" placeholder="구체적 행동" value="${pre.action}" style="grid-column:1/3;">
-        <input class="f-style" placeholder="스타일" value="${STYLE}">
-        <input class="f-compose" placeholder="구도·여백" value="${COMPOSE}"></div>
-      <div class="prompt-out f-out">${card.prompt||''}</div>
-      <div class="btn-row no-print" style="margin:8px 0 12px;">
-        <button class="btn sm f-make">프롬프트 만들기</button><button class="btn sm f-copy">📋 복사</button></div>
-      <div class="field"><label class="tip" style="font-weight:600;">프롬프트 수정 기록 (의도대로 안 나왔을 때 어떻게 고쳤나요?)</label>
-        <textarea class="f-revise" rows="2">${card.revise||''}</textarea></div>
-      <label class="tip" style="font-weight:600;">③ 완성 포스터 올리기</label>
-      <div class="img-drop f-drop">🖼️ 클릭해서 이미지 선택</div>
-      <input type="file" class="f-file hidden" accept="image/*">
+        <input class="f-bg" placeholder="배경·시간대" value="${esc(pre.bg)}">
+        <input class="f-person" placeholder="인물" value="${esc(pre.person)}">
+        <input class="f-hazard full" placeholder="위험 요소(낙하물·유리 등)" value="${esc(pre.hazard)}">
+        <input class="f-action full" placeholder="강조할 안전 행동(구체적 동작)" value="${esc(pre.action)}">
+        <input class="f-style full" placeholder="그림 스타일" value="${esc(STYLES[0])}"></div>
+      <div class="prompt-out f-out">${esc(card.prompt)}</div>
+      <div class="btn-row no-print" style="margin:8px 0 12px;"><button class="btn sm f-make">프롬프트 만들기</button><button class="btn sm f-copy">📋 복사</button></div>
+
+      <div class="field"><label class="tip" style="font-weight:600;">프롬프트 수정 기록 (의도대로 안 나왔을 때 어떻게 고쳤나요? — AI 리터러시 근거)</label>
+        <textarea class="f-revise" rows="2">${esc(card.revise)}</textarea></div>
+      <label class="tip" style="font-weight:600;">③ 완성 포스터 올리기 (AI 그림 + 글자)</label>
+      <div class="img-drop f-drop">🖼️ 클릭해서 이미지 선택</div><input type="file" class="f-file hidden" accept="image/*">
       <img class="img-prev f-prev" style="display:${card.img?'block':'none'}" src="${card.img||''}">
-      <div class="field sci-reason" style="margin-top:14px;"><label style="padding:8px 10px 0 12px;color:var(--sci);">
-        <span class="q" style="color:var(--sci);">④ 과학적 이유</span> 이 행동이 안전한 까닭을 과학으로</label>
-        <textarea class="f-reason" rows="2" style="margin:6px 12px 12px;width:auto;" placeholder="예: 낙하물로부터 머리를 보호 / 넓은 공터는 무너질 구조물이 없어 안전">${card.reason||''}</textarea></div>
+      <div class="field sci-reason" style="margin-top:14px;"><label style="padding:8px 10px 0 12px;color:var(--sci);"><span class="q" style="color:var(--sci);">④ 과학적 이유</span> 이 행동이 안전한 까닭을 과학으로</label>
+        <textarea class="f-reason" rows="2" style="margin:6px 12px 12px;width:auto;" placeholder="예: 낙하물로부터 머리를 보호 / 넓은 공터는 무너질 구조물이 없어 안전">${esc(card.reason)}</textarea></div>
       <div class="btn-row no-print" style="margin-top:4px;"><button class="btn safe sm f-save">💾 저장</button><span class="saved f-savemsg"></span></div>
     </div>`;
-  bind(el,card.id);
-  return el;
-}
-function bind(el,id){
-  const q=s=>el.querySelector(s);
-  // track editing focus to avoid realtime clobber while typing
+  bind(el,card.id); return el; }
+function bind(el,id){ const q=s=>el.querySelector(s);
   el.addEventListener('focusin',()=>{editingId=id;});
-  el.addEventListener('focusout',()=>{ setTimeout(()=>{ if(!el.contains(document.activeElement)){ editingId=null;
-    if(pendingRender){pendingRender=false; renderBoard(); buildManual();} } },120); });
-  function gather(){ return {type:q('.f-type').value,evac:q('.f-evac').value,prompt:q('.f-out').textContent,
-    revise:q('.f-revise').value,reason:q('.f-reason').value}; }
-  function rebuildPrompt(){ q('.f-out').textContent=buildPromptStr(q('.f-place').value,q('.f-person').value,q('.f-action').value,q('.f-style').value,q('.f-compose').value); }
-  q('.f-type').onchange=e=>{ const p=SIT[e.target.value]; if(p){ q('.f-official').textContent=p.official;
-    q('.f-place').value=p.place; q('.f-person').value=p.person; q('.f-action').value=p.action; rebuildPrompt(); } };
-  ['.f-place','.f-person','.f-action','.f-style','.f-compose'].forEach(s=>q(s).oninput=rebuildPrompt);
-  q('.f-make').onclick=rebuildPrompt;
+  el.addEventListener('focusout',()=>{ setTimeout(()=>{ if(!el.contains(document.activeElement)){ editingId=null; if(pendingRender){pendingRender=false;renderBoard();buildManual();} } },120); });
+  function rebuild(){ q('.f-out').textContent=buildPromptStr(q('.f-bg').value,q('.f-person').value,q('.f-hazard').value,q('.f-action').value,q('.f-style').value); }
+  q('.f-type').onchange=e=>{ const p=SIT[e.target.value]; if(p){ q('.f-official').textContent=p.official; q('.f-bg').value=p.bg; q('.f-person').value=p.person; q('.f-hazard').value=p.hazard; q('.f-action').value=p.action; rebuild(); } };
+  ['.f-bg','.f-person','.f-hazard','.f-action','.f-style'].forEach(s=>q(s).oninput=rebuild);
+  STYLES.forEach((s,i)=>{ const b=q('.f-style-'+i); if(b)b.onclick=()=>{q('.f-style').value=s;rebuild();}; });
+  q('.f-make').onclick=rebuild;
   q('.f-copy').onclick=()=>{navigator.clipboard?.writeText(q('.f-out').textContent).then(()=>{q('.f-copy').textContent="✅";setTimeout(()=>q('.f-copy').textContent="📋 복사",1000);}).catch(()=>{});};
   q('.f-drop').onclick=()=>q('.f-file').click();
-  q('.f-file').onchange=e=>{const f=e.target.files[0];if(!f)return; resizeImg(f,d=>{q('.f-prev').src=d;q('.f-prev').style.display="block";
-    q('.f-savemsg').textContent="이미지 준비됨 — 저장을 눌러 공유"; el.dataset.img=d; }); };
+  q('.f-file').onchange=e=>{const f=e.target.files[0];if(!f)return;resizeImg(f,d=>{q('.f-prev').src=d;q('.f-prev').style.display="block";el.dataset.img=d;q('.f-savemsg').textContent="이미지 준비됨 — 저장을 누르세요";});};
   q('.f-del').onclick=()=>delCard(id);
-  q('.f-save').onclick=async()=>{ const patch=gather(); if(el.dataset.img)patch.img=el.dataset.img;
-    q('.f-savemsg').textContent="저장 중…"; const ok=await saveCard(id,patch);
-    q('.f-savemsg').textContent= ok? "저장됨 ✓ 모두에게 공유되었어요":"저장 실패"; buildManual(); };
-}
+  q('.f-save').onclick=async()=>{ const patch={type:q('.f-type').value,evac:q('.f-evac').value,prompt:q('.f-out').textContent,revise:q('.f-revise').value,reason:q('.f-reason').value};
+    if(el.dataset.img)patch.img=el.dataset.img; q('.f-savemsg').textContent="저장 중…"; const ok=await saveCard(id,patch);
+    q('.f-savemsg').textContent= ok?"저장됨 ✓ 모두에게 공유됨":"저장 실패"; buildManual(); }; }
 
-/* ---- assemble manual ---- */
-function esc(t){return (t||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+/* ---- assemble ---- */
 function buildManual(){
-  const cards=[...store.values()].sort((a,b)=>(a.updated_at||'').localeCompare(b.updated_at||''));
-  let html=`<div class="mv-cover"><h2>우리 반 지진 대피 매뉴얼</h2><div class="meta">반 ${esc(room)} · 함께 만든 사람 ${cards.length}장의 카드</div></div>`;
-  html+=`<div class="mv-sec"><h3>🚨 상황별 대피 요령</h3>`;
-  if(cards.length){ cards.forEach(s=>{ html+=`<div class="mv-sit">${s.img?`<img src="${s.img}">`:''}
-      <div class="t"><b>${esc(s.type)}</b><span class="who">🙋 ${esc(s.author)}</span>
-        <div class="pre">${esc(s.evac)||'<span class="mv-empty">작성 전</span>'}</div>
-        ${s.reason?`<span class="sci-tag">🔬 ${esc(s.reason)}</span>`:''}</div></div>`; }); }
-  else html+=`<p class="mv-empty">아직 올라온 카드가 없어요.</p>`;
+  const maps=[...dataStore.values()].sort((a,b)=>(a.num||999)-(b.num||999));
+  const cards=[...cardStore.values()].sort((a,b)=>(a.updated_at||'').localeCompare(b.updated_at||''));
+  let html=`<div class="mv-cover"><h2>우리학교 지진 대응 매뉴얼</h2><div class="sub2">미래엔 엠티처 활용</div><div class="meta">반 ${esc(room)} · 지도 ${maps.length}장 · 시나리오 ${cards.length}개</div></div>`;
+  html+=`<div class="mv-sec"><h3 class="s">🌏 우리 반이 조사한 지진·화산 분포 (기상청 데이터)</h3>`;
+  html+= maps.length? `<div class="mv-maps">${maps.map(d=>`<div class="m"><img src="${d.img}"><div>${d.num?d.num+'번 ':''}${esc(d.period||'')} · ${esc(d.kind)} ${d.note?'· '+esc(d.note):''}</div></div>`).join('')}</div>`
+    : `<p class="mv-empty">아직 업로드된 지도가 없어요.</p>`;
+  html+=`</div>`;
+  html+=`<div class="mv-sec"><h3>🚨 상황별 대피 시나리오</h3>`;
+  html+= cards.length? cards.map(s=>`<div class="mv-sit">${s.img?`<img src="${s.img}">`:''}<div class="t"><b>${esc(s.type)}</b><span class="who">🙋 ${esc(s.author)}</span>
+      <div class="pre">${esc(s.evac)||'<span class="mv-empty">작성 전</span>'}</div>${s.reason?`<span class="sci-tag">🔬 ${esc(s.reason)}</span>`:''}</div></div>`).join('')
+    : `<p class="mv-empty">아직 올라온 시나리오가 없어요.</p>`;
   html+=`</div>`;
   $('preview').innerHTML=html;
 }
@@ -322,7 +374,7 @@ $('buildBtn').onclick=()=>{buildManual();$('previewWrap').scrollIntoView({behavi
 $('printBtn').onclick=()=>{buildManual();setTimeout(()=>window.print(),200);};
 $('dlBtn').onclick=()=>{buildManual(); const css=document.querySelector('style').outerHTML;
   const html=`<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet">${css}</head><body><div class="wrap"><div id="preview">${$('preview').innerHTML}</div></div></body></html>`;
-  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([html],{type:'text/html'}));a.download=`우리반_지진매뉴얼_${room}.html`;a.click();};
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([html],{type:'text/html'}));a.download=`우리학교_지진대응매뉴얼_${room}.html`;a.click();};
 
 initConfig();
 </script>
